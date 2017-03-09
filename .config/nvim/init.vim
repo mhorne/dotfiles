@@ -30,6 +30,33 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'majutsushi/tagbar'
+	let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " ===== Files =====
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all'}
@@ -85,7 +112,7 @@ Plug 'SirVer/ultisnips'
 	let g:UltiSnipsExpandTrigger = "<C-b>"
 	let g:UltiSnipsJumpForwardTrigger = "<C-b>"
 	let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
-	
+
 Plug 'honza/vim-snippets'
 
 " ===== Git =====
@@ -123,9 +150,12 @@ Plug 'fatih/vim-go'
 	let g:go_highlight_build_constraints = 1
 
 Plug 'lervag/vimtex'
+Plug 'elzr/vim-json'
+Plug 'cespare/vim-toml'
 
 " ===== Miscellaneous =====
 Plug 'tpope/vim-surround'
+Plug 'Shougo/echodoc.vim'
 
 Plug 'ervandew/supertab'
 	let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -137,13 +167,10 @@ call plug#end()
 " 	General Settings
 " ===============================================================
 
-set clipboard=unnamed,unnamedplus
-set number " show line numbers
-set relativenumber " show relative line numbers
-set hidden " hide buffers instead of closing them
-set nobackup "don't create backup files
-
-set virtualedit=onemore " allow cursor one character after line
+set number 			" show line numbers
+set relativenumber 	" show relative line numbers
+set hidden 			" hide buffers instead of closing them
+set nobackup 		" don't create backup files
 
 set nowrap		 	" don't wrap lines
 set tabstop=4 		" set tabs as 4 spaces
@@ -151,32 +178,43 @@ set shiftwidth=4	" set number of spaces for autoindent
 set shiftround
 set autoindent
 set copyindent
-set showmatch		" highlight matching brackets
+set showmatch 		" highlight matching brackets
 set smarttab
+set noshowmode
 
 set ignorecase	" ignore case when searching
 set smartcase 	" ignore case only when all lowercase
 set hlsearch	" highlight search terms
 set incsearch	" show search matches as you type
 
+set splitbelow
+set splitright
+
+set virtualedit=onemore " allow cursor one character after line
+set clipboard=unnamed,unnamedplus
+
 " set list " show hidden characters
 " set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
 
+syntax enable
 set background=dark
 colorscheme solarized
+
 set cursorline " highlight the current line
 set lazyredraw " only redraw the UI when needed
 
 set regexpengine=1 " use old regexp engine
-
-" Start insert mode when entering a terminal buffer
-autocmd BufWinEnter,WinEnter term://* startinsert
 
 " Cursor settings
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 let &t_SI = "\<Esc>[5 q" " blinking bar in insert mode
 let &t_SR = "\<Esc>[3 q" " blinking underscore in replace mode
 let &t_EI = "\<Esc>[2 q" " regular block in normal mode
+
+" ===== Autocommands =====
+
+" Start insert mode when entering a terminal buffer
+autocmd BufWinEnter,WinEnter term://* startinsert
 
 " ===== Keybindings =====
 nnoremap ; :

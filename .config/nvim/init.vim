@@ -31,31 +31,31 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'majutsushi/tagbar'
 	let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+		\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
 \ }
 
 " ===== Files =====
@@ -141,6 +141,7 @@ Plug 'neomake/neomake'
 	"let g:neomake_open_list = 2
 
 " ===== Languages =====
+" Golang
 Plug 'fatih/vim-go'
 	let g:go_highlight_functions = 1
 	let g:go_highlight_methods = 1
@@ -149,6 +150,11 @@ Plug 'fatih/vim-go'
 	let g:go_highlight_operators = 1
 	let g:go_highlight_build_constraints = 1
 
+" Ruby/Rails
+Plug 'tpope/vim-rvm'
+Plug 'tpope/vim-rails'
+
+" Misc Formats
 Plug 'lervag/vimtex'
 Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
@@ -193,15 +199,16 @@ set splitright
 set virtualedit=onemore " allow cursor one character after line
 set clipboard=unnamed,unnamedplus
 
-" set list " show hidden characters
-" set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
+set list " show hidden characters
+set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
 
 syntax enable
 set background=dark
 colorscheme solarized
 
-set cursorline " highlight the current line
-set lazyredraw " only redraw the UI when needed
+set cursorline 		" highlight the current line
+set scrolloff=999 	" keep cursor centered vertically
+set lazyredraw 		" only redraw the UI when needed
 
 set regexpengine=1 " use old regexp engine
 

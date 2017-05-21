@@ -109,10 +109,10 @@ Plug 'SirVer/ultisnips'
 	nnoremap <leader>se :UltiSnipsEdit<CR>
 
 	let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
-	let g:UltiSnipsEditSplit = 'horizontal'
+	let g:UltiSnipsEditSplit = 'context'
 	let g:UltiSnipsExpandTrigger = "<C-b>"
-	let g:UltiSnipsJumpForwardTrigger = "<C-b>"
-	let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
+	let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+	let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 Plug 'honza/vim-snippets'
 
@@ -172,6 +172,8 @@ Plug 'Shougo/echodoc.vim'
 Plug 'ervandew/supertab'
 	let g:SuperTabDefaultCompletionType = "<C-n>"
 	let g:SuperTabContextDefaultCompletionType = "<C-n>"
+	let g:SuperTabCrMapping = 1
+	let g:SuperTabLongestHighlight = 1
 
 call plug#end()
 

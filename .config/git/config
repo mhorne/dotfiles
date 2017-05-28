@@ -1,0 +1,13 @@
+[user]
+	name = Mitchell Horne
+	email = mhorne063@gmail.com
+[core]
+	editor = vim
+[alias]
+	graph = log --pretty=format:\"%h - %an, %s\" --graph
+[credential]
+	helper = cache
+[credential "https://gitlab.com"]
+	username = mhorne
+[credential "https://github.com"]
+	username = mitchell0000

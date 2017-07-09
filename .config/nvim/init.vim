@@ -142,11 +142,10 @@ Plug 'airblade/vim-gitgutter'
 	let g:gitgutter_eager = 1
 	nnoremap <silent> <leader>gt :GitGutterAll<CR>
 
-" ===== Syntax =====
+" ===== Languages/Syntax =====
 Plug 'neomake/neomake'
 	autocmd! BufWritePost,BufEnter * Neomake
 
-" ===== Languages =====
 " Golang
 Plug 'fatih/vim-go'
 	let g:go_highlight_functions = 1
@@ -155,6 +154,9 @@ Plug 'fatih/vim-go'
 	let g:go_highlight_types = 1
 	let g:go_highlight_operators = 1
 	let g:go_highlight_build_constraints = 1
+
+" C/C++
+Plug 'justinmk/vim-syntax-extra'
 
 " Ruby/Rails
 Plug 'tpope/vim-rvm'

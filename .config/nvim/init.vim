@@ -94,6 +94,7 @@ Plug 'junegunn/fzf.vim'
   \ }
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " ===== Autocomplete/Snippets =====
 Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }

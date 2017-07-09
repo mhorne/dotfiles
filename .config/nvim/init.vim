@@ -14,8 +14,14 @@ let g:mapleader = "\<Space>" " set <leader>
 call plug#begin('~/.config/nvim/plugged')
 
 " ===== Display/Interface =====
-Plug 'altercation/vim-colors-solarized'
-	let g:solarized_contrast = 'high'
+
+" Colorschemes
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'tomasr/molokai'
+Plug 'lifepillar/vim-solarized8'
+Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
+	let g:gruvbox_italic = 1
 
 Plug 'vim-airline/vim-airline'
 	if !exists("g:airlinesymbols")
@@ -25,7 +31,7 @@ Plug 'vim-airline/vim-airline'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#fnamemod = ':t'
 	let g:airline_powerline_fonts = 1
-	let g:airline_theme = 'solarized'
+	let g:airline_theme = 'gruvbox'
 
 Plug 'vim-airline/vim-airline-themes'
 
@@ -208,7 +214,8 @@ set list " show hidden characters
 set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
 
 set background=dark
-colorscheme solarized
+set termguicolors
+colorscheme gruvbox
 
 set cursorline		" highlight the current line
 set scrolloff=999	" keep cursor centered vertically

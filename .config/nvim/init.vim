@@ -64,15 +64,6 @@ Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 
 Plug 'junegunn/fzf.vim'
   let g:fzf_layout = { 'window' : 'enew' }
-  nnoremap <silent> <leader><space> :Files<CR>
-  nnoremap <silent> <leader>oo :Files $HOME<CR>
-  nnoremap <silent> <leader>ob :Buffers<CR>
-  nnoremap <silent> <leader>ow :Windows<CR>
-  nnoremap <silent> <leader>ot :Tags<CR>
-  nnoremap <silent> <leader>og :GFiles<CR>
-  nnoremap <silent> <leader>oc :Commits<CR>
-
-  " Customize fzf colors to match your color scheme
   let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -118,29 +109,14 @@ Plug 'SirVer/ultisnips'
   let g:UltiSnipsJumpForwardTrigger = "<C-j>"
   let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
-  nnoremap <leader>se :UltiSnipsEdit<CR>
-
 Plug 'honza/vim-snippets'
 
 " ===== Git =====
 Plug 'tpope/vim-fugitive'
-  nnoremap <silent> <leader>gs :Gstatus<CR>
-  nnoremap <silent> <leader>gd :Gdiff<CR>
-  nnoremap <silent> <leader>gc :Gcommit<CR>
-  nnoremap <silent> <leader>gb :Gblame<CR>
-  nnoremap <silent> <leader>ge :Gedit<CR>
-  nnoremap <silent> <leader>gE :Gedit<space>
-  nnoremap <silent> <leader>gr :Gread<CR>
-  nnoremap <silent> <leader>gR :Gread<space>
-  nnoremap <silent> <leader>gw :Gwrite<CR>
-  nnoremap <silent> <leader>gW :Gwrite!<CR>
-  nnoremap <silent> <leader>gq :Gwq<CR>
-  nnoremap <silent> <leader>gQ :Gwq!<CR>
 
 Plug 'airblade/vim-gitgutter'
   let g:gitgutter_realtime = 1
   let g:gitgutter_eager = 1
-  nnoremap <silent> <leader>gt :GitGutterAll<CR>
 
 " ===== Languages/Syntax =====
 Plug 'neomake/neomake'
@@ -176,13 +152,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
 Plug 'Shougo/echodoc.vim'
-
-Plug 'ervandew/supertab'
-  let g:SuperTabDefaultCompletionType = "<C-n>"
-  let g:SuperTabContextDefaultCompletionType = "<C-n>"
-  let g:SuperTabCrMapping = 1
-  let g:SuperTabLongestHighlight = 1
-  let g:SuperTabClosePreviewOnPopupClose = 1
 
 call plug#end()
 
@@ -239,18 +208,21 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 " ===== Autocommands =====
 " Start insert mode when entering a terminal buffer
 autocmd BufWinEnter,WinEnter term://* startinsert
+" ===============================================================
+" === Keybindings
+" ===============================================================
 
-" ===== Keybindings =====
+" Easier command key
 nnoremap ; :
 
 " Quick save file
 nnoremap <leader>w :w<CR>
 
-" Shortcut to open init.vim
-" nnoremap <leader>vi :tabedit $MYVIMRC<CR>
-
 " Make Y consistent with C and D
 nnoremap Y y$
+
+" Shortcut to edit init.vim
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
 
 " Easier resize windows
 nnoremap <silent> <leader>+ :resize +5<CR>
@@ -277,3 +249,39 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
+
+" Deoplete completion menu bindings
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+
+" Ultisnips bindings
+nnoremap <silent> <leader>se :UltiSnipsEdit<CR>
+
+" NERDTree bindings
+nnoremap <silent> <leader>f :NERDTreeToggle<CR>
+nnoremap <silent> <leader>F :NERDTreeFind<CR>
+
+" FZF bindings
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>oo :Files $HOME<CR>
+nnoremap <silent> <leader>ob :Buffers<CR>
+nnoremap <silent> <leader>ow :Windows<CR>
+nnoremap <silent> <leader>ot :Tags<CR>
+nnoremap <silent> <leader>og :GFiles<CR>
+nnoremap <silent> <leader>oc :Commits<CR>
+nnoremap <silent> <leader>os :Snippets<CR>
+
+" Git bindings
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+nnoremap <silent> <leader>gE :Gedit<space>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gR :Gread<space>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gW :Gwrite!<CR>
+nnoremap <silent> <leader>gq :Gwq<CR>
+nnoremap <silent> <leader>gQ :Gwq!<CR>
+nnoremap <silent> <leader>gt :GitGutterAll<CR>

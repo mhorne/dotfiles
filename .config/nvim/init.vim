@@ -1,3 +1,55 @@
+" ===============================================================
+" === General Settings
+" ===============================================================
+
+" ===== Settings =====
+" Files/Buffers
+set autoread        " reload files changed outside of vim
+set hidden          " hide buffers instead of closing them
+set nobackup        " don't create backup files
+set noswapfile      " don't create swap files
+
+" Cursor/Line
+set number          " show line numbers
+set relativenumber  " show relative line numbers
+set cursorline      " highlight the current line
+set scrolloff=999   " keep cursor centered vertically
+set nowrap          " don't wrap lines
+
+" Tabs/Indentation
+set expandtab       " use spaces as tabs by default
+set tabstop=2       " number of spaces a tab counts for
+set softtabstop=2
+set shiftround
+set copyindent      " copy indentation for new lines
+set showmatch       " highlight matching brackets
+set smarttab
+
+" Search
+set ignorecase      " ignore case when searching
+set smartcase       " ignore case only when all lowercase
+set hlsearch        " highlight search terms
+set incsearch       " show search matches as you type
+
+" Windows
+set splitbelow      " new splits appear below current window
+set splitright      " new vertical splits appear to the right
+
+" Hidden characters
+set list
+set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
+
+set virtualedit=onemore  " allow cursor one character after line
+set clipboard=unnamed,unnamedplus
+
+set lazyredraw     " only redraw the UI when needed
+set laststatus=2   " always draw statusline
+set noshowmode     " don't print current mode
+set completeopt-=preview
+
+" ===== Variables =====
+let g:mapleader = "\<Space>"  " set <leader>
+
 " ==============================================================
 " === Plugins
 " ==============================================================
@@ -9,12 +61,9 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let g:mapleader = "\<Space>" " set <leader>
-
 call plug#begin('~/.config/nvim/plugged')
 
 " ===== Display/Interface =====
-
 " Colorschemes
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'tomasr/molokai'
@@ -152,53 +201,19 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
 Plug 'Shougo/echodoc.vim'
+  let g:echodoc#enable_at_startup = 1
 
 call plug#end()
 
 " ===============================================================
-" === General Settings
+" === Settings/Functions
 " ===============================================================
 
-set autoread        " reload files changed outside of vim
-set hidden          " hide buffers instead of closing them
-set nobackup        " don't create backup files
-set noswapfile      " don't create swap files
-set noshowmode      " don't print current mode
-
-set number          " show line numbers
-set relativenumber  " show relative line numbers
-set nowrap          " don't wrap lines
-
-set expandtab       " use spaces as tabs by default
-set tabstop=2       " number of spaces a tab counts for
-set softtabstop=2
-set shiftround
-set copyindent      " copy indentation for new lines
-set showmatch       " highlight matching brackets
-set smarttab
-
-set ignorecase  " ignore case when searching
-set smartcase   " ignore case only when all lowercase
-set hlsearch    " highlight search terms
-set incsearch   " show search matches as you type
-
-set splitbelow
-set splitright
-
-set virtualedit=onemore  " allow cursor one character after line
-set clipboard=unnamed,unnamedplus
-
-set list  " show hidden characters
-set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
-
+" Colorscheme
 set background=dark
-set termguicolors   " enable 24-bit truecolors
+set termguicolors  " enable 24-bit truecolors
+syntax enable
 colorscheme gruvbox
-
-set cursorline     " highlight the current line
-set scrolloff=999  " keep cursor centered vertically
-set lazyredraw     " only redraw the UI when needed
-set laststatus=2   " always draw statusline
 
 " Cursor settings
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50

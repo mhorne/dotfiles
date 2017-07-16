@@ -23,17 +23,12 @@ Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
   let g:gruvbox_italic = 1
 
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
-  if !exists("g:airlinesymbols")
-    let g:airlinesymbols = {}
-  endif
-
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline_powerline_fonts = 1
   let g:airline_theme = 'gruvbox'
-
-Plug 'vim-airline/vim-airline-themes'
 
 Plug 'majutsushi/tagbar'
   let g:tagbar_type_go = {
@@ -68,7 +63,7 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 
 Plug 'junegunn/fzf.vim'
-  let g:fzf_nvim_statusline = 0
+  let g:fzf_layout = { 'window' : 'enew' }
   nnoremap <silent> <leader><space> :Files<CR>
   nnoremap <silent> <leader>oo :Files $HOME<CR>
   nnoremap <silent> <leader>ob :Buffers<CR>
@@ -94,6 +89,10 @@ Plug 'junegunn/fzf.vim'
   \ }
 
 Plug 'scrooloose/nerdtree'
+  let g:NERDTreeQuitOnOpen = 1
+  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTreeMinimalUI = 1
+
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " ===== Autocomplete/Snippets =====
@@ -191,12 +190,15 @@ call plug#end()
 " === General Settings
 " ===============================================================
 
+set autoread        " reload files changed outside of vim
+set hidden          " hide buffers instead of closing them
+set nobackup        " don't create backup files
+set noswapfile      " don't create swap files
+set noshowmode      " don't print current mode
+
 set number          " show line numbers
 set relativenumber  " show relative line numbers
 set nowrap          " don't wrap lines
-set hidden          " hide buffers instead of closing them
-set nobackup        " don't create backup files
-set noshowmode      " don't print current mode
 
 set expandtab       " use spaces as tabs by default
 set tabstop=2       " number of spaces a tab counts for
@@ -227,13 +229,12 @@ colorscheme gruvbox
 set cursorline     " highlight the current line
 set scrolloff=999  " keep cursor centered vertically
 set lazyredraw     " only redraw the UI when needed
-
-set regexpengine=1  " use old regexp engine
+set laststatus=2   " always draw statusline
 
 " Cursor settings
-let &t_SI = "\<Esc>[5 q" " blinking bar in insert mode
-let &t_SR = "\<Esc>[3 q" " blinking underscore in replace mode
-let &t_EI = "\<Esc>[2 q" " regular block in normal mode
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+              \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+              \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " ===== Autocommands =====
 " Start insert mode when entering a terminal buffer
@@ -247,6 +248,9 @@ nnoremap <leader>w :w<CR>
 
 " Shortcut to open init.vim
 " nnoremap <leader>vi :tabedit $MYVIMRC<CR>
+
+" Make Y consistent with C and D
+nnoremap Y y$
 
 " Easier resize windows
 nnoremap <silent> <leader>+ :resize +5<CR>

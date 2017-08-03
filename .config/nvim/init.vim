@@ -169,7 +169,6 @@ Plug 'airblade/vim-gitgutter'
 
 " ===== Languages/Syntax =====
 Plug 'neomake/neomake'
-  autocmd! BufWritePost,BufEnter * Neomake
 
 " Golang
 Plug 'fatih/vim-go'
@@ -232,9 +231,31 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
               \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
               \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-" ===== Autocommands =====
-" Start insert mode when entering a terminal buffer
-autocmd BufWinEnter,WinEnter term://* startinsert
+" ===============================================================
+" === Autocommands
+" ===============================================================
+
+if has('autocmd')
+
+  autocmd! BufWritePost,BufEnter * Neomake
+  autocmd! BufWinEnter,WinEnter term://* startinsert
+
+  " Enable spell check for certain file types
+  augroup spell_enable
+    autocmd!
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType latex setlocal spell
+    autocmd FileType markdown setlocal spell
+    autocmd FileType text setlocal spell
+  augroup END
+
+  augroup quit_windows
+    autocmd!
+    autocmd FileType qf nnoremap <silent> q :q<CR>
+  augroup END
+
+endif
+
 " ===============================================================
 " === Keybindings
 " ===============================================================

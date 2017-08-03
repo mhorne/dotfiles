@@ -193,6 +193,18 @@ Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
 
 " ===== Miscellaneous =====
+Plug 'mhinz/vim-startify'
+  let g:startify_session_dir = '~/.config/nvim/session'
+  let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'} ]
+  let g:startify_padding_left = 5
+  let g:startify_change_to_dir = 1
+  let g:startify_change_to_vcs_root = 1
+  let g:startify_commands = [ {'p': ['Update Plugins', ':PlugUpdate']} ]
+  let g:startify_skiplist = [ '\.git/.*' ]
+  let g:startify_session_persistence = 1
+
+Plug 'ludovicchabant/vim-gutentags'
+
 Plug 'tmhedberg/matchit'
 
 Plug 'tpope/vim-sensible'

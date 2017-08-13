@@ -8,6 +8,7 @@ set autoread        " reload files changed outside of vim
 set hidden          " hide buffers instead of closing them
 set nobackup        " don't create backup files
 set noswapfile      " don't create swap files
+set undofile        " keep persistent undo history
 
 " Cursor/Line
 set number          " show line numbers
@@ -39,16 +40,19 @@ set splitright      " new vertical splits appear to the right
 set list
 set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
 
-set virtualedit=onemore  " allow cursor one character after line
-set clipboard=unnamed,unnamedplus
+set lazyredraw      " only redraw the UI when needed
+set laststatus=2    " always draw statusline
+set noshowmode      " don't print current mode
+set completeopt=menu,noselect
 
-set lazyredraw     " only redraw the UI when needed
-set laststatus=2   " always draw statusline
-set noshowmode     " don't print current mode
-set completeopt-=preview
+" ===== Environment Variables =====
+if $XDG_CACHE_HOME == ''
+  let $XDG_CACHE_HOME = $HOME.'/.cache'
+endif
 
-" ===== Variables =====
-let g:mapleader = "\<Space>"  " set <leader>
+if $GOPATH == ''
+  let $GOPATH = $HOME.'/Development/Go'
+endif
 
 " ==============================================================
 " === Plugins
@@ -73,6 +77,7 @@ Plug 'morhetz/gruvbox'
   let g:gruvbox_italic = 1
 
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mitchell0000/vim-moonfly-airline'
 Plug 'vim-airline/vim-airline'
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#fnamemod = ':t'
@@ -81,11 +86,13 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'majutsushi/tagbar'
 
+Plug 'mbbill/undotree'
+
 " ===== Files =====
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 
 Plug 'junegunn/fzf.vim'
-  let g:fzf_layout = { 'window' : 'enew' }
+  let g:fzf_layout = { 'window' : '-tabnew' }
   let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -111,6 +118,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " ===== Autocomplete/Snippets =====
 Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
+  if !exists('g:deoplete#omni#input_patterns')
+      let g:deoplete#omni#input_patterns = {}
+  endif
 
 Plug 'zchee/deoplete-clang'
   let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
@@ -119,7 +129,7 @@ Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do' : 'make' }
   let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
   let g:deoplete#sources#go#use_cache = 1
-  let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+  let g:deoplete#sources#go#json_directory = $XDG_CACHE_HOME.'/deoplete/go/linux_amd64'
 
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
@@ -166,16 +176,19 @@ Plug 'cespare/vim-toml'
 
 " ===== Miscellaneous =====
 Plug 'mhinz/vim-startify'
-  let g:startify_session_dir = '~/.config/nvim/session'
   let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'} ]
-  let g:startify_padding_left = 5
   let g:startify_change_to_dir = 1
   let g:startify_change_to_vcs_root = 1
   let g:startify_commands = [ {'p': ['Update Plugins', ':PlugUpdate']} ]
-  let g:startify_skiplist = [ '\.git/.*' ]
+  let g:startify_custom_header = []
+  let g:startify_padding_left = 5
+  let g:startify_session_dir = '~/.config/nvim/session'
   let g:startify_session_persistence = 1
+  let g:startify_skiplist = [ '\.git/*' ]
 
 Plug 'ludovicchabant/vim-gutentags'
+  let g:gutentags_cache_dir = $XDG_CACHE_HOME.'/nvim/tags'
+  let g:gutentags_ctags_exclude = ['go']
 
 Plug 'tmhedberg/matchit'
 
@@ -193,16 +206,28 @@ call plug#end()
 " === Settings/Functions
 " ===============================================================
 
+" ===== Settings =====
 " Colorscheme
 set background=dark
-set termguicolors  " enable 24-bit truecolors
 syntax enable
-colorscheme gruvbox
+colorscheme molokai
+
+" Enable true-color support if available
+if has('termguicolors')
+  set termguicolors
+endif
 
 " Cursor settings
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
               \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
               \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+" ===== Variables =====
+" Set Leader
+let g:mapleader = "\<Space>"  " set <leader>
+
+" Vimtex autocompletion
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 " ===============================================================
 " === Autocommands
@@ -213,18 +238,22 @@ if has('autocmd')
   autocmd! BufWritePost,BufEnter * Neomake
   autocmd! BufWinEnter,WinEnter term://* startinsert
 
-  " Enable spell check for certain file types
-  augroup spell_enable
+  " Enable spelling and line breaks for text files
+  augroup prose
     autocmd!
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType latex setlocal spell
-    autocmd FileType markdown setlocal spell
     autocmd FileType text setlocal spell
+    autocmd FileType tex,plaintex setlocal spell
+    autocmd FileType tex,plaintex setlocal tw=80
+    autocmd FileType markdown setlocal spell
+    autocmd FileType markdown setlocal tw=80
   augroup END
 
+  " Easy quit windows
   augroup quit_windows
     autocmd!
-    autocmd FileType qf nnoremap <silent> q :q<CR>
+    autocmd FileType qf nnoremap <buffer><silent> q :q<CR>
+    autocmd FileType help nnoremap <buffer><silent> q :q<CR>
   augroup END
 
 endif
@@ -271,16 +300,22 @@ tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 
-" Deoplete completion menu bindings
+" Completion menu bindings
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
 " Ultisnips bindings
 nnoremap <silent> <leader>se :UltiSnipsEdit<CR>
 
+" Tagbar bindings
+nnoremap <silent> <leader>t :TagbarToggle<CR>
+
 " NERDTree bindings
 nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <leader>F :NERDTreeFind<CR>
+
+" UndoTree bindings
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " FZF bindings
 nnoremap <silent> <leader><space> :Files<CR>

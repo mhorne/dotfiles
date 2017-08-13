@@ -93,20 +93,6 @@ Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 
 Plug 'junegunn/fzf.vim'
   let g:fzf_layout = { 'window' : '-tabnew' }
-  let g:fzf_colors = {
-  \ 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment']
-  \ }
 
 Plug 'scrooloose/nerdtree'
   let g:NERDTreeQuitOnOpen = 1
@@ -119,7 +105,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
   if !exists('g:deoplete#omni#input_patterns')
-      let g:deoplete#omni#input_patterns = {}
+    let g:deoplete#omni#input_patterns = {}
   endif
 
 Plug 'zchee/deoplete-clang'
@@ -217,6 +203,11 @@ if has('termguicolors')
   set termguicolors
 endif
 
+" Enable true-color support if available
+if has('termguicolors')
+  set termguicolors
+endif
+
 " Cursor settings
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
               \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
@@ -224,7 +215,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 
 " ===== Variables =====
 " Set Leader
-let g:mapleader = "\<Space>"  " set <leader>
+let g:mapleader = "\<Space>"
 
 " Vimtex autocompletion
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete

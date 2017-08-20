@@ -1,0 +1,9 @@
+--exclude=.git/*
+--exclude=_build/*
+--exclude=build/*
+--exclude=cache/*
+--exclude=node_modules/*
+--exclude=lib/*
+--exclude=log/*
+--exclude=tmp/*
+--exclude=vendor/*

@@ -197,7 +197,7 @@ call plug#end()
 " Colorscheme
 set background=dark
 syntax enable
-colorscheme molokai
+colorscheme gruvbox
 
 " Enable true-color support if available
 if has('termguicolors')

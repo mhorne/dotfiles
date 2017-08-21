@@ -137,7 +137,8 @@ Plug 'airblade/vim-gitgutter'
   let g:gitgutter_eager = 1
 
 " ===== Languages/Syntax =====
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
+  let g:airline#extensions#ale#enabled = 1
 
 " Golang
 Plug 'fatih/vim-go'
@@ -226,7 +227,6 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 if has('autocmd')
 
-  autocmd! BufWritePost,BufEnter * Neomake
   autocmd! BufWinEnter,WinEnter term://* startinsert
 
   " Enable spelling and line breaks for text files

@@ -70,12 +70,11 @@ call plug#begin('~/.config/nvim/plugged')
 " ===== Display/Interface =====
 " Colorschemes
 Plug 'bluz71/vim-moonfly-colors'
-Plug 'tomasr/molokai'
 Plug 'lifepillar/vim-solarized8'
-Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
   let g:gruvbox_italic = 1
 
+" Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mitchell0000/vim-moonfly-airline'
 Plug 'vim-airline/vim-airline'
@@ -153,13 +152,10 @@ Plug 'fatih/vim-go'
 Plug 'justinmk/vim-syntax-extra'
 
 " Ruby/Rails
-Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-rails'
 
-" Misc Formats
+" LaTeX
 Plug 'lervag/vimtex'
-Plug 'elzr/vim-json'
-Plug 'cespare/vim-toml'
 
 " ===== Miscellaneous =====
 Plug 'mhinz/vim-startify'
@@ -183,9 +179,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-
-Plug 'Shougo/echodoc.vim'
-  let g:echodoc#enable_at_startup = 1
 
 call plug#end()
 

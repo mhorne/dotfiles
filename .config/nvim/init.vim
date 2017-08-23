@@ -197,11 +197,6 @@ if has('termguicolors')
   set termguicolors
 endif
 
-" Enable true-color support if available
-if has('termguicolors')
-  set termguicolors
-endif
-
 " Cursor settings
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
               \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor

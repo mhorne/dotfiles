@@ -56,6 +56,16 @@ if $GOPATH ==# ''
   let $GOPATH = $HOME.'/Development/Go'
 endif
 
+" Set Search tool if available
+if executable('rg') " ripgrep
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m
+elseif executable('pt') " the platinum searcher
+  set grepprg=pt\ --nogroup\ --nocolor\ --ignore-case
+elseif executable('ag') " the silver searcher
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
 " ==============================================================================
 " === Plugins
 " ==============================================================================

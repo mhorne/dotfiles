@@ -1,6 +1,8 @@
-" ===============================================================
+scriptencoding utf-8
+
+" ==============================================================================
 " === General Settings
-" ===============================================================
+" ==============================================================================
 
 " ===== Settings =====
 " Files/Buffers
@@ -46,23 +48,25 @@ set noshowmode      " don't print current mode
 set completeopt=menu,noselect
 
 " ===== Environment Variables =====
-if $XDG_CACHE_HOME == ''
+if $XDG_CACHE_HOME ==# ''
   let $XDG_CACHE_HOME = $HOME.'/.cache'
 endif
 
-if $GOPATH == ''
+if $GOPATH ==# ''
   let $GOPATH = $HOME.'/Development/Go'
 endif
 
-" ==============================================================
+" ==============================================================================
 " === Plugins
-" ==============================================================
+" ==============================================================================
 
 " Autoinstall vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup plugged
+    autocmd! VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup END
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -94,7 +98,6 @@ Plug 'junegunn/fzf.vim'
   let g:fzf_layout = { 'window' : '-tabnew' }
 
 Plug 'scrooloose/nerdtree'
-  let g:NERDTreeQuitOnOpen = 1
   let g:NERDTreeAutoDeleteBuffer = 1
   let g:NERDTreeMinimalUI = 1
 
@@ -122,9 +125,9 @@ Plug 'Shougo/neco-syntax'
 Plug 'SirVer/ultisnips'
   let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
   let g:UltiSnipsEditSplit = 'context'
-  let g:UltiSnipsExpandTrigger = "<C-b>"
-  let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-  let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+  let g:UltiSnipsExpandTrigger = '<C-b>'
+  let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+  let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 Plug 'honza/vim-snippets'
 
@@ -182,9 +185,9 @@ Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
-" ===============================================================
+" ==============================================================================
 " === Settings/Functions
-" ===============================================================
+" ==============================================================================
 
 " ===== Settings =====
 " Colorscheme
@@ -203,15 +206,16 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
               \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " ===== Variables =====
-" Set Leader
-let g:mapleader = "\<Space>"
+" Set Leader Keys
+let g:mapleader = ' '
+let g:maplocalleader = ','
 
 " Vimtex autocompletion
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
-" ===============================================================
+" ==============================================================================
 " === Autocommands
-" ===============================================================
+" ==============================================================================
 
 if has('autocmd')
 
@@ -237,15 +241,9 @@ if has('autocmd')
 
 endif
 
-" ===============================================================
+" ==============================================================================
 " === Keybindings
-" ===============================================================
-
-" Easier command key
-nnoremap ; :
-
-" Quick save file
-nnoremap <leader>w :w<CR>
+" ==============================================================================
 
 " Make Y consistent with C and D
 nnoremap Y y$

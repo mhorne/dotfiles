@@ -296,6 +296,13 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
+" QuickFix menu bindings
+nnoremap <silent> <leader>q :copen<CR>
+nnoremap <silent> <leader>l :lopen<CR>
+
+" Clear search
+nnoremap <silent> <leader>/ :let @/=''<CR>
+
 " Ultisnips bindings
 nnoremap <silent> <leader>se :UltiSnipsEdit<CR>
 

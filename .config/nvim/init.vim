@@ -176,7 +176,11 @@ Plug 'mhinz/vim-startify'
   let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'} ]
   let g:startify_change_to_dir = 1
   let g:startify_change_to_vcs_root = 1
-  let g:startify_commands = [ {'p': ['Update Plugins', ':PlugUpdate']} ]
+  let g:startify_commands = [
+    \   {'p': ['Update Plugins', ':PlugUpdate']},
+    \   {'f': ['FZF', ':Files']},
+    \   {'c': ['Check Health', ':CheckHealth']}
+    \ ]
   let g:startify_custom_header = []
   let g:startify_padding_left = 5
   let g:startify_session_dir = '~/.config/nvim/session'

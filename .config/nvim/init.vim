@@ -21,11 +21,11 @@ set nowrap          " don't wrap lines
 
 " Tabs/Indentation
 set expandtab       " use spaces as tabs by default
-set tabstop=2       " number of spaces a tab counts for
-set softtabstop=2
+set tabstop=8       " tabs get the default length of 8 spaces
+set softtabstop=-1  " negative just uses the value of shiftwidth
+set shiftwidth=4
 set shiftround
 set copyindent      " copy indentation for new lines
-set showmatch       " highlight matching brackets
 set smarttab
 
 " Search
@@ -45,6 +45,7 @@ set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
 set lazyredraw      " only redraw the UI when needed
 set laststatus=2    " always draw statusline
 set noshowmode      " don't print current mode
+set showmatch       " highlight matching brackets
 set completeopt=menu,noselect
 
 " ===== Environment Variables =====

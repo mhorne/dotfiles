@@ -22,7 +22,11 @@ if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
 fi
 
 # Aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+if [[ $(uname -s) == Linux ]]; then
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+elif [[ $(uname -s) == FreeBSD ]] || [[ $(uname -s) == Darwin ]]; then
+  alias ls='ls -G'
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -1,16 +1,23 @@
 scriptencoding utf-8
 
-" Vim Custom Statusline
+" ==============================================================================
+" === Statusline
+" ==============================================================================
 
+" Enable statusline and tabline
+set laststatus=2
+set showtabline=2
+
+" Main statusline layout
 set statusline=
-set statusline+=\ [%n]
-set statusline+=\ %<%f%m
-set statusline+=\ %h%w%q
+set statusline+=\ [%n]              " Buffer number
+set statusline+=\ %<%f%m            " File path
+set statusline+=\ %h%w%q            " Special window types
 set statusline+=%=
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=[%{&fileformat}]
-set statusline+=\ %4(%p%%%)
-set statusline+=\ %9(%l/%L%)
-set statusline+=\ :\ %4(%c%)
+set statusline+=\ %y                " File type
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " File encoding
+set statusline+=[%{&fileformat}]    " File format
+set statusline+=\ %4(%p%%%)         " Percentage in file
+set statusline+=\ %9(%l/%L%)        " Row number
+set statusline+=\ :\ %3(%v%)        " Virtual column number
 set statusline+=\ 

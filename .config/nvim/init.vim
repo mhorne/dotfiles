@@ -38,6 +38,7 @@ set incsearch       " show search matches as you type
 set splitbelow      " new splits appear below current window
 set splitright      " new vertical splits appear to the right
 
+" Statusline
 set laststatus=2
 set showtabline=2
 
@@ -104,7 +105,7 @@ Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 
 Plug 'junegunn/fzf.vim'
-  let g:fzf_layout = { 'window' : '-tabnew' }
+  let g:fzf_layout = { 'window' : 'enew' }
 
 Plug 'scrooloose/nerdtree'
   let g:NERDTreeAutoDeleteBuffer = 1
@@ -120,8 +121,8 @@ Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
   endif
 
 Plug 'zchee/deoplete-clang'
-  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-  let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+  let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm50/lib/libclang.so'
+  let g:deoplete#sources#clang#clang_header = '/usr/local/llvm50/lib/clang/'
 
 Plug 'zchee/deoplete-go', { 'do' : 'make' }
   let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
@@ -170,21 +171,6 @@ Plug 'tpope/vim-rails'
 Plug 'lervag/vimtex'
 
 " ===== Miscellaneous =====
-Plug 'mhinz/vim-startify'
-  let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'} ]
-  let g:startify_change_to_dir = 1
-  let g:startify_change_to_vcs_root = 1
-  let g:startify_commands = [
-    \   {'p': ['Update Plugins', ':PlugUpdate']},
-    \   {'f': ['FZF', ':Files']},
-    \   {'c': ['Check Health', ':CheckHealth']}
-    \ ]
-  let g:startify_custom_header = []
-  let g:startify_padding_left = 5
-  let g:startify_session_dir = '~/.config/nvim/session'
-  let g:startify_session_persistence = 1
-  let g:startify_skiplist = [ '\.git/*' ]
-
 Plug 'ludovicchabant/vim-gutentags'
   let g:gutentags_cache_dir = $XDG_CACHE_HOME.'/nvim/tags'
   let g:gutentags_ctags_exclude = ['go']
@@ -214,7 +200,7 @@ if has('termguicolors')
 endif
 
 " Cursor settings
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+set guicursor=n-v:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50
               \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
               \,sm:block-blinkwait175-blinkoff150-blinkon175
 
@@ -232,7 +218,9 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 if has('autocmd')
 
-  autocmd! BufWinEnter,WinEnter term://* startinsert
+  augroup term
+    autocmd! BufWinEnter,WinEnter term://* startinsert
+  augroup END
 
   " Enable spelling and line breaks for text files
   augroup prose

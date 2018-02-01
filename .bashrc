@@ -7,6 +7,12 @@
 
 PS1='[\u@\h \W]\$ '
 
+# History settings
+HISTSIZE=1000
+HISTFILESIZE=1000
+HISTCONTROL=ignoreboth
+shopt -s histappend
+
 # Environment variables
 GPG_TTY=$(tty)
 export GPG_TTY

@@ -7,6 +7,9 @@
 
 PS1='[\u@\h \W]\$ '
 
+# VI mode
+set -o vi
+
 # History settings
 HISTSIZE=1000
 HISTFILESIZE=1000
@@ -25,6 +28,16 @@ export XDG_DATA_HOME=$HOME/.local/share
 export GOPATH=~/Development/Go
 if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
   export PATH=$PATH:$GOPATH/bin
+fi
+
+# Add user .local/bin to $PATH
+if [[ ! "$PATH" == *$HOME/.local/bin* ]]; then
+  export PATH=$PATH:$HOME/.local/bin
+fi
+
+# Fix PROMPT_COMMAND in tilix
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+  source /etc/profile.d/vte.sh
 fi
 
 # Aliases

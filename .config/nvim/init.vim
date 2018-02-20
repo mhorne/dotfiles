@@ -201,6 +201,18 @@ elseif executable('ag') " the silver searcher
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+" cscope
+if has('cscope')
+  set cscopetag         " Use cscope for tag lookups
+  set cscopetagorder=0  " Search cscope db before tags file
+  set cscopequickfix=s-,c-,d-,i-,t-,e-,a- " Output find results to quickfix
+  if filereadable("cscope.out") " Add any database found in current directory
+    cscope add cscope.out
+  elseif $CSCOPE_DB != "" " else add database pointed to by environment
+    cscope add $CSCOPE_DB
+  endif
+endif
+
 " ===== Variables =====
 " Set Leader Keys
 let g:mapleader = ' '

@@ -1,56 +1,8 @@
 scriptencoding utf-8
 
 " ==============================================================================
-" === General Settings
+" === Neovim configuration file - init.vim
 " ==============================================================================
-
-" ===== Settings =====
-" Files/Buffers
-set autoread        " reload files changed outside of vim
-set hidden          " hide buffers instead of closing them
-set nobackup        " don't create backup files
-set noswapfile      " don't create swap files
-set undofile        " keep persistent undo history
-
-" Cursor/Line
-set number          " show line numbers
-set relativenumber  " show relative line numbers
-set cursorline      " highlight the current line
-set scrolloff=999   " keep cursor centered vertically
-set nowrap          " don't wrap lines
-
-" Tabs/Indentation
-set expandtab       " use spaces as tabs by default
-set tabstop=8       " tabs get the default length of 8 spaces
-set softtabstop=-1  " negative just uses the value of shiftwidth
-set shiftwidth=4
-set shiftround
-set copyindent      " copy indentation for new lines
-set smarttab
-
-" Search
-set ignorecase      " ignore case when searching
-set smartcase       " ignore case only when all lowercase
-set hlsearch        " highlight search terms
-set incsearch       " show search matches as you type
-
-" Windows
-set splitbelow      " new splits appear below current window
-set splitright      " new vertical splits appear to the right
-
-" Statusline
-set laststatus=2
-set showtabline=2
-
-" Hidden characters
-set list
-set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
-
-set lazyredraw      " only redraw the UI when needed
-set laststatus=2    " always draw statusline
-set noshowmode      " don't print current mode
-set showmatch       " highlight matching brackets
-set completeopt=menu,noselect
 
 " ===== Environment Variables =====
 if $XDG_CACHE_HOME ==# ''
@@ -63,16 +15,6 @@ endif
 
 if $GOPATH ==# ''
   let $GOPATH = $HOME.'/Development/Go'
-endif
-
-" Set Search tool if available
-if executable('rg') " ripgrep
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m
-elseif executable('pt') " the platinum searcher
-  set grepprg=pt\ --nogroup\ --nocolor\ --ignore-case
-elseif executable('ag') " the silver searcher
-  set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 " ==============================================================================
@@ -185,10 +127,55 @@ Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 " ==============================================================================
-" === Settings/Functions
+" === Settings
 " ==============================================================================
 
-" ===== Settings =====
+" Files/Buffers
+set autoread        " reload files changed outside of vim
+set hidden          " hide buffers instead of closing them
+set nobackup        " don't create backup files
+set noswapfile      " don't create swap files
+set undofile        " keep persistent undo history
+
+" Cursor/Line
+set number          " show line numbers
+set relativenumber  " show relative line numbers
+set cursorline      " highlight the current line
+set showmatch       " highlight matching brackets
+set scrolloff=999   " keep cursor centered vertically
+set nowrap          " don't wrap lines
+
+" Tabs/Indentation
+set expandtab       " use spaces as tabs by default
+set tabstop=8       " tabs get the default length of 8 spaces
+set softtabstop=-1  " negative just uses the value of shiftwidth
+set shiftwidth=4
+set shiftround
+set copyindent      " copy indentation for new lines
+set smarttab
+
+" Search
+set ignorecase      " ignore case when searching
+set smartcase       " ignore case only when all lowercase
+set hlsearch        " highlight search terms
+set incsearch       " show search matches as you type
+
+" Windows
+set splitbelow      " new splits appear below current window
+set splitright      " new vertical splits appear to the right
+
+" Statusline
+set noshowmode      " don't print current mode
+set laststatus=2    " always display statusline
+set showtabline=2   " always display tabline
+
+" Hidden characters
+set list
+set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
+
+set lazyredraw      " only redraw the UI when needed
+set completeopt=menu,noselect
+
 " Colorscheme
 set background=dark
 syntax enable
@@ -199,10 +186,20 @@ if has('termguicolors')
   set termguicolors
 endif
 
-" Cursor settings
+" Cursor style
 set guicursor=n-v:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50
               \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
               \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+" Set Search tool if available
+if executable('rg') " ripgrep
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m
+elseif executable('pt') " the platinum searcher
+  set grepprg=pt\ --nogroup\ --nocolor\ --ignore-case
+elseif executable('ag') " the silver searcher
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 " ===== Variables =====
 " Set Leader Keys

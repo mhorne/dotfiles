@@ -227,6 +227,7 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 if has('autocmd')
 
+  " Terminal specific autocommands
   augroup term
     autocmd! BufWinEnter,WinEnter term://* startinsert
   augroup END
@@ -234,19 +235,20 @@ if has('autocmd')
   " Enable spelling and line breaks for text files
   augroup prose
     autocmd!
-    autocmd FileType gitcommit setlocal spell
-    autocmd FileType text setlocal spell
-    autocmd FileType tex,plaintex setlocal spell
-    autocmd FileType tex,plaintex setlocal tw=80
-    autocmd FileType markdown setlocal spell
-    autocmd FileType markdown setlocal tw=80
+    autocmd FileType gitcommit,text,tex,plaintex,markdown setlocal spell
+    autocmd FileType tex,plaintex,markdown setlocal textwidth=80
   augroup END
 
   " Easy quit windows
   augroup quit_windows
     autocmd!
-    autocmd FileType qf nnoremap <buffer><silent> q :q<CR>
-    autocmd FileType help nnoremap <buffer><silent> q :q<CR>
+    autocmd FileType qf,help,diff nnoremap <buffer><silent> q :q<CR>
+  augroup END
+
+  " Filetype overrides
+  augroup filetypes
+    autocmd!
+    autocmd BufRead,BufNewFile *.h setlocal filetype=c
   augroup END
 
 endif

@@ -1,4 +1,5 @@
 --exclude=.git/*
+--exclude=.svn/*
 --exclude=_build/*
 --exclude=build/*
 --exclude=cache/*

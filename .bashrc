@@ -37,7 +37,7 @@ fi
 
 # Fix PROMPT_COMMAND in tilix
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-  source /etc/profile.d/vte.sh
+  [ -f /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
 fi
 
 # Aliases

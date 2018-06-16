@@ -87,8 +87,6 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 
 Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_realtime = 1
-  let g:gitgutter_eager = 1
 
 " ===== Languages/Syntax =====
 Plug 'w0rp/ale'
@@ -163,6 +161,7 @@ set incsearch       " show search matches as you type
 " Windows
 set splitbelow      " new splits appear below current window
 set splitright      " new vertical splits appear to the right
+set updatetime=100  " milliseconds for the cursorhold event
 
 " Statusline
 set noshowmode      " don't print current mode

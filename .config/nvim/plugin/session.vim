@@ -33,8 +33,21 @@ function! s:LoadSession()
     endif
 endfunc
 
+function! s:DeleteSession()
+    let b:session_file = g:session_dir . getcwd() . "/session.vim"
+    echo b:session_file
+    if filereadable(b:session_file)
+        let l:conf = confirm("Delete session file?", "&Yes\n&No", 2)
+        echo l:conf
+        if (l:conf == 1)
+            call delete(b:session_file)
+            let s:save_enabled = 0
+        endif
+    endif
+endfunc
+
 function! s:AutoSave()
-    if exists("s:save_enabled")
+    if exists("s:save_enabled") && s:save_enabled ==# 1
         call s:SaveSession()
     endif
 endfunc
@@ -42,6 +55,7 @@ endfunc
 " Register the commands
 command! -bar -bang -nargs=0 SaveSession call s:SaveSession()
 command! -bar -bang -nargs=0 LoadSession call s:LoadSession()
+command! -bar -bang -nargs=0 DeleteSession call s:DeleteSession()
 
 augroup PluginSession
     autocmd!

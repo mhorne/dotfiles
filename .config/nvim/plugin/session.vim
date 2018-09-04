@@ -35,19 +35,18 @@ endfunc
 
 function! s:DeleteSession()
     let b:session_file = g:session_dir . getcwd() . "/session.vim"
-    echo b:session_file
-    if filereadable(b:session_file)
-        let l:conf = confirm("Delete session file?", "&Yes\n&No", 2)
-        echo l:conf
-        if (l:conf == 1)
-            call delete(b:session_file)
-            let s:save_enabled = 0
-        endif
+    if !filereadable(b:session_file)
+        return
+    endif
+
+    if confirm("Delete session file?", "&Yes\n&No", 2) == 1
+        call delete(fnameescape(b:session_file))
+        let s:save_enabled = 0
     endif
 endfunc
 
 function! s:AutoSave()
-    if exists("s:save_enabled") && s:save_enabled ==# 1
+    if exists("s:save_enabled") && s:save_enabled == 1
         call s:SaveSession()
     endif
 endfunc

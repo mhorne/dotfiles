@@ -36,7 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Colorschemes
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
   let g:gruvbox_italic = 1
 
 Plug 'majutsushi/tagbar'
@@ -178,7 +178,7 @@ set completeopt=menu,noselect
 " Colorscheme
 set background=dark
 syntax enable
-colorscheme gruvbox
+colorscheme gruvbox8
 
 " Enable true-color support if available
 if has('termguicolors')

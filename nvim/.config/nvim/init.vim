@@ -278,11 +278,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-inoremap <C-h> <C-[><C-w>h
-inoremap <C-j> <C-[><C-w>j
-inoremap <C-k> <C-[><C-w>k
-inoremap <C-l> <C-[><C-w>l
-
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k

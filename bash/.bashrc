@@ -7,9 +7,6 @@
 
 PS1='[\u@\h \W]\$ '
 
-# VI mode
-set -o vi
-
 # History settings
 HISTSIZE=1000
 HISTFILESIZE=1000

@@ -48,4 +48,7 @@ elif [[ $(uname -s) == FreeBSD ]] || [[ $(uname -s) == Darwin ]]; then
   alias ls='ls -G'
 fi
 
+# Start keychain for ssh-agent
+eval $(keychain --eval --quiet id_rsa)
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

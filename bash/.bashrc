@@ -14,20 +14,25 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # Environment variables
-GPG_TTY=$(tty)
-export GPG_TTY
+export GPG_TTY=$(tty)
+
+export PAGER=less
+export MANPAGER=$PAGER
 
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
+# $DEVDIR is used as a default by some of my scripts
+export DEVDIR=$HOME/Development
+
 # Define $GOPATH and add it to $PATH
-export GOPATH=~/Development/Go
+export GOPATH=$DEVDIR/Go
 if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
   export PATH=$PATH:$GOPATH/bin
 fi
 
-# Add user .local/bin to $PATH
+# Add user's .local/bin to $PATH
 if [[ ! "$PATH" == *$HOME/.local/bin* ]]; then
   export PATH=$PATH:$HOME/.local/bin
 fi

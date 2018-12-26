@@ -41,12 +41,8 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 # Aliases
-if [[ $(uname -s) == Linux ]]; then
-  alias ls='ls --color=auto'
-  alias grep='grep --color=auto'
-elif [[ $(uname -s) == FreeBSD ]] || [[ $(uname -s) == Darwin ]]; then
-  alias ls='ls -G'
-fi
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
 
 # Start keychain for ssh-agent
 eval $(keychain --eval --quiet id_rsa)

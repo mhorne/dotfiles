@@ -51,6 +51,13 @@ function! s:AutoSave()
     endif
 endfunc
 
+function! s:StartUp()
+    " Only autoload a session when no files were given on the commandline
+    if argc() == 0
+        call s:LoadSession()
+    endif
+endfunc
+
 " Register the commands
 command! -bar -bang -nargs=0 SaveSession call s:SaveSession()
 command! -bar -bang -nargs=0 LoadSession call s:LoadSession()
@@ -58,7 +65,7 @@ command! -bar -bang -nargs=0 DeleteSession call s:DeleteSession()
 
 augroup PluginSession
     autocmd!
-    autocmd VimEnter * nested call s:LoadSession()
+    autocmd VimEnter * nested call s:StartUp()
     autocmd VimLeavePre * call s:AutoSave()
 augroup END
 

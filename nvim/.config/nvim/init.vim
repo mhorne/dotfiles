@@ -147,10 +147,10 @@ set nowrap          " don't wrap lines
 set expandtab       " use spaces as tabs by default
 set tabstop=8       " tabs get the default length of 8 spaces
 set softtabstop=-1  " negative just uses the value of shiftwidth
-set shiftwidth=4
-set shiftround
+set shiftwidth=4    " number of spaces for each step of indentation
+set shiftround      " round indents to multiples of shiftwidth
 set copyindent      " copy indentation for new lines
-set smarttab
+set smarttab        " <Tab> inserts blanks according to shiftwidth
 
 " Search
 set ignorecase      " ignore case when searching

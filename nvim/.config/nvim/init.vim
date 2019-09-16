@@ -172,6 +172,8 @@ set showtabline=2   " always display tabline
 set list
 set listchars=tab:•·,trail:·,extends:❯,precedes:❮,nbsp:×
 
+" Misc
+set timeoutlen=3000 " timeout for mappings
 set lazyredraw      " only redraw the UI when needed
 set completeopt=menu,noselect
 

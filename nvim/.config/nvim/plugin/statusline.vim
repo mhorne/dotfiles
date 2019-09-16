@@ -4,6 +4,11 @@ scriptencoding utf-8
 " === Statusline
 " ==============================================================================
 
+if exists('g:loaded_statusline')
+    finish
+endif
+let g:loaded_statusline = 1
+
 " Enable statusline and tabline
 set laststatus=2
 set showtabline=2

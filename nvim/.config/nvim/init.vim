@@ -104,9 +104,6 @@ Plug 'fatih/vim-go'
 " C/C++
 Plug 'justinmk/vim-syntax-extra'
 
-" Ruby/Rails
-Plug 'tpope/vim-rails'
-
 " LaTeX
 Plug 'lervag/vimtex'
 

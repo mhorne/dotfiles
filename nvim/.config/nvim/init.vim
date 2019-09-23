@@ -90,7 +90,7 @@ Plug 'airblade/vim-gitgutter'
 
 " ===== Languages/Syntax =====
 Plug 'w0rp/ale'
-  let g:airline#extensions#ale#enabled = 1
+  let g:airline#extensions#ale#enabled = 0
 
 " Golang
 Plug 'fatih/vim-go'

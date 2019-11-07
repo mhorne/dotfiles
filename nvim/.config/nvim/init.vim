@@ -113,8 +113,6 @@ Plug 'ludovicchabant/vim-gutentags'
   let g:gutentags_exclude_filetypes = [ 'gitcommit', 'text', 'markdown' ]
   let g:gutentags_modules = [ 'ctags', 'cscope' ]
 
-Plug 'tmhedberg/matchit'
-
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'

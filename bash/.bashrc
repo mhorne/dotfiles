@@ -1,5 +1,5 @@
 #
-# ~/.bashrc
+# ~/.bashrc - Configuration file for bash
 #
 
 # If not running interactively, don't do anything
@@ -19,12 +19,22 @@ export GPG_TTY=$(tty)
 export PAGER=less
 export MANPAGER=$PAGER
 
+# Check for nvim and fall back to vim
+EDITOR=vim
+[[ -n $(command -v nvim) ]] && EDITOR=nvim
+export EDITOR
+export SVN_EDITOR=$EDITOR
+
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_RUNTIME_DIR=/tmp
 
-# $DEVDIR is used as a default by some of my scripts
 export DEVDIR=$HOME/Development
+
+# Graphics/Wayland related
+export LIBGL_DRI3_ENABLE=1
+export MOZ_WAYLAND_ENABLE=1
 
 # Define $GOPATH and add it to $PATH
 export GOPATH=$DEVDIR/Go

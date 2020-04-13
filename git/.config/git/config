@@ -11,3 +11,13 @@
 	username = mhorne
 [credential "https://github.com"]
 	username = mitchell0000
+[sendemail]
+	confirm = auto
+	smtpServer = smtp.gmail.com
+	smtpServerPort = 587
+	smtpEncryption = tls
+	smtpUser = mhorne063@gmail.com
+[sendemail "freebsd"]
+	from = mhorne@FreeBSD.org
+[include]
+	path = config.local

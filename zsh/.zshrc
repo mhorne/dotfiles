@@ -10,6 +10,17 @@ zstyle :compinstall filename '/home/mitchell/.zshrc'
 autoload -Uz compinit
 compinit
 
+# Git integration
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{green}(%b)%r%f'
+zstyle ':vcs_info:git-svn:*' formats '%F{green}(%b)%r%f'
+zstyle ':vcs_info:svn:*' formats '%F{green}(%b)%r%f'
+zstyle ':vcs_info:*' enable git svn
+
 # History Settings
 HISTFILE=~/.histfile
 HISTSIZE=2000
@@ -45,8 +56,8 @@ export LIBGL_DRI3_ENABLE=1
 export MOZ_WAYLAND_ENABLE=1
 
 # Platform-dependent Variables
-OS=$(uname -n)
-if [[ $OS == "freebsd" ]]; then
+OS=$(uname -o)
+if [[ $OS == "FreeBSD" ]]; then
     LOCALBASE=/usr/local/
 else
     LOCALBASE=/usr/

@@ -1,0 +1,9 @@
+#
+# Global gitignore file
+#
+# include "with core.excludefiles = ~/.config/git/gitignore"
+#
+
+.ccls-cache
+.clangd
+.compile_commands*.json

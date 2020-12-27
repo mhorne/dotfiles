@@ -2,15 +2,28 @@
 	name = Mitchell Horne
 	email = mhorne063@gmail.com
 [core]
-	editor = vim
+	editor = nvim
+	excludesfile = ~/.config/git/gitignore
 [alias]
+	amend = commit --amend
+	br = branch
+	ca = commit --amend
+	co = checkout
 	graph = log --pretty=format:\"%h - %an, %s\" --graph
+	pick = cherry-pick
+	rb = rebase
+	rbc = rebase --continue
+	rbe = rebase --edit-todo
+	rbi = rebase -i
+	rbs = rebase --skip
+	st = status
+	stashp = stash pop
 [credential]
 	helper = cache
 [credential "https://gitlab.com"]
 	username = mhorne
 [credential "https://github.com"]
-	username = mitchell0000
+	username = mhorne
 [sendemail]
 	confirm = auto
 	smtpServer = smtp.gmail.com
@@ -21,3 +34,5 @@
 	from = mhorne@FreeBSD.org
 [include]
 	path = config.local
+[pull]
+	ff = only

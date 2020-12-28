@@ -72,7 +72,7 @@ alias ls='ls --color=auto'
 export PROMPT='%B%F{red}%n%f%b: %F{blue}%2~%f %(!.#.$) '
 
 # Start keychain for ssh-agent
-eval $(keychain --eval --quiet id_rsa)
+eval $(keychain --eval --quiet --ignore-missing id_rsa id_ecdsa)
 
 # FZF keybindings and completion
 FZF_DIR=$LOCALBASE/share/examples/fzf/shell

@@ -57,6 +57,6 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
 # Start keychain for ssh-agent
-eval $(keychain --eval --quiet id_rsa)
+eval $(keychain --eval --quiet --ignore-missing id_rsa id_ecdsa)
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -35,9 +35,11 @@ call plug#begin('~/.config/nvim/plugged')
 " ===== Display/Interface =====
 " Colorschemes
 Plug 'bluz71/vim-moonfly-colors'
+Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'lifepillar/vim-gruvbox8'
   let g:gruvbox_italic = 1
+  let g:gruvbox_contrast_dark = 'hard'
 
 Plug 'majutsushi/tagbar'
 

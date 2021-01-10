@@ -113,7 +113,7 @@ Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
   let g:gutentags_cache_dir = $XDG_CACHE_HOME.'/nvim/tags'
   let g:gutentags_exclude_filetypes = [ 'gitcommit', 'text', 'markdown' ]
-  let g:gutentags_modules = [ 'ctags', 'cscope' ]
+  let g:gutentags_modules = [ 'ctags' ]
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'

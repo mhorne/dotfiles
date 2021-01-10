@@ -175,15 +175,15 @@ set timeoutlen=3000 " timeout for mappings
 set lazyredraw      " only redraw the UI when needed
 set completeopt=menu,noselect
 
-" Colorscheme
-set background=dark
-syntax enable
-colorscheme gruvbox8
-
 " Enable true-color support if available
 if has('termguicolors')
   set termguicolors
 endif
+
+" Colorscheme
+set background=dark
+syntax enable
+colorscheme gruvbox
 
 " Cursor style
 set guicursor=n-v:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50
